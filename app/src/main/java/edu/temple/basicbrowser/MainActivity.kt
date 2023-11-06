@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var urlEditText: EditText
     lateinit var goButton: ImageButton
     lateinit var webView: WebView
+    lateinit var urlText: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,13 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = object: WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
+            }
+        }
+
+        goButton.setOnClickListener{
+            if(urlEditText.text.toString() != ""){
+                urlText = urlEditText.text.toString()
+                webView.loadUrl(urlText)
             }
         }
 
